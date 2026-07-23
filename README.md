@@ -17,7 +17,7 @@ Panopticon runs on the server only. It:
 | 1.20.1 | ✅ | - | ✅ |
 | 1.21.1 | ✅ | ✅ | ✅ |
 
-## Repository layout
+## Repository layout 
 
 Five self-contained Gradle projects, one per loader target, plus a composite root:
 
