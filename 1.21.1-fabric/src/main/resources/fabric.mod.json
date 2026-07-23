@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "panopticon",
+  "version": "${version}",
+  "name": "Panopticon",
+  "authors": ["Mokich"],
+  "license": "LGPL-3.0-only",
+  "icon": "logo.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": ["net.mokich.panopticon.PanopticonMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
