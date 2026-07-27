@@ -6,7 +6,7 @@ Panopticon runs on the server only. It:
 
 - answers Panoptic's seed, structure, biome and villager-trade requests;
 - owns the permission system - groups, per-player nodes, the `/panopticon` command, and an in-game admin GUI;
-- handles server-side actions like villager spawning and item giving.
+- handles server-side actions like villager spawning, item giving and teleporting players onto the surface.
 
 > **Do not install Panopticon alongside Panoptic on the same server.** Panopticon replaces Panoptic server-side and refuses to load (by design) if both are present. Players still install Panoptic on their clients.
 
@@ -71,6 +71,7 @@ All subcommands require admin access. The same operations are available through 
 | `panoptic.inspector` | Inspector |
 | `panoptic.seed.view` | Seed Inspector map |
 | `panoptic.seed.structures` | structure overlay on the map |
+| `panoptic.seed.teleport` | teleporting onto the surface from the map |
 | `panoptic.trade` | Trade Inspector |
 | `panoptic.trade.spawn` | spawning villagers from the trade browser |
 | `panoptic.screens` | Screen Inspector |
@@ -98,6 +99,7 @@ All channels live in the `panoptic:` namespace - this is the wire contract with 
 | `struct_region_result` | S to C | scan result |
 | `biome_tile_request` | C to S | biome tile |
 | `biome_tile_result` | S to C | RLE biome tile |
+| `teleport_surface` | C to S | teleport the player onto the surface at a map point |
 
 ## Support
 
