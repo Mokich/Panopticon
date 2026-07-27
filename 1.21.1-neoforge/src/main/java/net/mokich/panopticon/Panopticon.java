@@ -37,6 +37,7 @@ public class Panopticon {
         r.playToServer(GiveRequestPacket.TYPE, GiveRequestPacket.STREAM_CODEC, GiveRequestPacket::handle);
         r.playToServer(StructRegionPackets.Request.TYPE, StructRegionPackets.Request.STREAM_CODEC, StructRegionPackets.Request::handle);
         r.playToServer(BiomeTilePackets.Request.TYPE, BiomeTilePackets.Request.STREAM_CODEC, BiomeTilePackets.Request::handle);
+        r.playToServer(TeleportSurfacePacket.TYPE, TeleportSurfacePacket.STREAM_CODEC, TeleportSurfacePacket::handle);
 
         r.playToClient(OraclePackets.CheckResult.TYPE, OraclePackets.CheckResult.STREAM_CODEC, OraclePackets.CheckResult::handle);
         r.playToClient(OraclePackets.AllResult.TYPE, OraclePackets.AllResult.STREAM_CODEC, OraclePackets.AllResult::handle);

@@ -34,6 +34,7 @@ public class Panopticon {
         CHANNEL.registerMessage(10, StructRegionPackets.Result.class, StructRegionPackets.Result::encode, StructRegionPackets.Result::decode, StructRegionPackets.Result::handle);
         CHANNEL.registerMessage(11, BiomeTilePackets.Request.class, BiomeTilePackets.Request::encode, BiomeTilePackets.Request::decode, BiomeTilePackets.Request::handle);
         CHANNEL.registerMessage(12, BiomeTilePackets.Result.class, BiomeTilePackets.Result::encode, BiomeTilePackets.Result::decode, BiomeTilePackets.Result::handle);
+        CHANNEL.registerMessage(13, TeleportSurfacePacket.class, TeleportSurfacePacket::encode, TeleportSurfacePacket::decode, TeleportSurfacePacket::handle);
         MAIN_CHANNEL = NetworkRegistry.newSimpleChannel(ResourceLocation.fromNamespaceAndPath("panoptic", "main"), () -> "1", s -> true, s -> true);
         MAIN_CHANNEL.registerMessage(0, OraclePackets.Check.class, OraclePackets.Check::encode, OraclePackets.Check::decode, OraclePackets.Check::handle);
         MAIN_CHANNEL.registerMessage(1, OraclePackets.CheckResult.class, OraclePackets.CheckResult::encode, OraclePackets.CheckResult::decode, OraclePackets.CheckResult::handle);

@@ -16,6 +16,7 @@ import net.mokich.panopticon.network.OraclePackets;
 import net.mokich.panopticon.network.PermsSyncPacket;
 import net.mokich.panopticon.network.SeedPushPacket;
 import net.mokich.panopticon.network.SpawnVillagerPacket;
+import net.mokich.panopticon.network.TeleportSurfacePacket;
 import net.mokich.panopticon.network.StructRegionPackets;
 import net.mokich.panopticon.perms.PermsCommand;
 import net.mokich.panopticon.perms.PermsEvents;
@@ -42,6 +43,7 @@ public final class PanopticonMod implements ModInitializer {
         PayloadTypeRegistry.playC2S().register(GiveRequestPacket.TYPE, GiveRequestPacket.STREAM_CODEC);
         PayloadTypeRegistry.playC2S().register(StructRegionPackets.Request.TYPE, StructRegionPackets.Request.STREAM_CODEC);
         PayloadTypeRegistry.playC2S().register(BiomeTilePackets.Request.TYPE, BiomeTilePackets.Request.STREAM_CODEC);
+        PayloadTypeRegistry.playC2S().register(TeleportSurfacePacket.TYPE, TeleportSurfacePacket.STREAM_CODEC);
         PayloadTypeRegistry.playS2C().register(OraclePackets.CheckResult.TYPE, OraclePackets.CheckResult.STREAM_CODEC);
         PayloadTypeRegistry.playS2C().register(OraclePackets.AllResult.TYPE, OraclePackets.AllResult.STREAM_CODEC);
         PayloadTypeRegistry.playS2C().register(PermsSyncPacket.TYPE, PermsSyncPacket.STREAM_CODEC);
@@ -60,6 +62,7 @@ public final class PanopticonMod implements ModInitializer {
         ServerPlayNetworking.registerGlobalReceiver(GiveRequestPacket.TYPE, GiveRequestPacket::handle);
         ServerPlayNetworking.registerGlobalReceiver(StructRegionPackets.Request.TYPE, StructRegionPackets.Request::handle);
         ServerPlayNetworking.registerGlobalReceiver(BiomeTilePackets.Request.TYPE, BiomeTilePackets.Request::handle);
+        ServerPlayNetworking.registerGlobalReceiver(TeleportSurfacePacket.TYPE, TeleportSurfacePacket::handle);
     }
 
     private void registerEvents() {

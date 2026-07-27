@@ -35,6 +35,7 @@ public class Panopticon {
         CHANNEL.messageBuilder(StructRegionPackets.Result.class, 10).encoder(StructRegionPackets.Result::encode).decoder(StructRegionPackets.Result::decode).consumerNetworkThread(StructRegionPackets.Result::handle).add();
         CHANNEL.messageBuilder(BiomeTilePackets.Request.class, 11).encoder(BiomeTilePackets.Request::encode).decoder(BiomeTilePackets.Request::decode).consumerNetworkThread(BiomeTilePackets.Request::handle).add();
         CHANNEL.messageBuilder(BiomeTilePackets.Result.class, 12).encoder(BiomeTilePackets.Result::encode).decoder(BiomeTilePackets.Result::decode).consumerNetworkThread(BiomeTilePackets.Result::handle).add();
+        CHANNEL.messageBuilder(TeleportSurfacePacket.class, 13).encoder(TeleportSurfacePacket::encode).decoder(TeleportSurfacePacket::decode).consumerNetworkThread(TeleportSurfacePacket::handle).add();
         CHANNEL.build();
         MAIN_CHANNEL = ChannelBuilder.named(ResourceLocation.fromNamespaceAndPath("panoptic", "main"))
                 .networkProtocolVersion(1).optional().simpleChannel();

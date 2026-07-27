@@ -12,6 +12,7 @@ import net.mokich.panopticon.network.BiomeTilePackets;
 import net.mokich.panopticon.network.GiveRequestPacket;
 import net.mokich.panopticon.network.OraclePackets;
 import net.mokich.panopticon.network.SpawnVillagerPacket;
+import net.mokich.panopticon.network.TeleportSurfacePacket;
 import net.mokich.panopticon.network.StructRegionPackets;
 import net.mokich.panopticon.perms.PermsCommand;
 import net.mokich.panopticon.perms.PermsEvents;
@@ -53,6 +54,11 @@ public final class PanopticonMod implements ModInitializer {
                 (server, player, handler, buf, responseSender) -> {
                     SpawnVillagerPacket msg = SpawnVillagerPacket.decode(buf);
                     server.execute(() -> SpawnVillagerPacket.handle(msg, player));
+                });
+        ServerPlayNetworking.registerGlobalReceiver(TeleportSurfacePacket.CHANNEL,
+                (server, player, handler, buf, responseSender) -> {
+                    TeleportSurfacePacket msg = TeleportSurfacePacket.decode(buf);
+                    server.execute(() -> TeleportSurfacePacket.handle(msg, player));
                 });
         ServerPlayNetworking.registerGlobalReceiver(GiveRequestPacket.CHANNEL,
                 (server, player, handler, buf, responseSender) -> {
