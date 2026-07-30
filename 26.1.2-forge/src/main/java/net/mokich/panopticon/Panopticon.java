@@ -1,6 +1,6 @@
 package net.mokich.panopticon;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
@@ -18,11 +18,11 @@ public class Panopticon {
         if (!FMLEnvironment.dist.isDedicatedServer()) {
             return;
         }
-        if (ModList.get().isLoaded("panoptic")) {
+        if (ModList.isLoaded("panoptic")) {
             throw new IllegalStateException(
                     "Panopticon replaces Panoptic on the server. Remove Panoptic from the server mods folder.");
         }
-        CHANNEL = ChannelBuilder.named(ResourceLocation.fromNamespaceAndPath("panoptic", "perms"))
+        CHANNEL = ChannelBuilder.named(Identifier.fromNamespaceAndPath("panoptic", "perms"))
                 .networkProtocolVersion(1).optional().simpleChannel();
         CHANNEL.messageBuilder(PermsSyncPacket.class, 0).encoder(PermsSyncPacket::encode).decoder(PermsSyncPacket::decode).consumerNetworkThread(PermsSyncPacket::handle).add();
         CHANNEL.messageBuilder(AdminOpenPacket.class, 1).encoder(AdminOpenPacket::encode).decoder(AdminOpenPacket::decode).consumerNetworkThread(AdminOpenPacket::handle).add();
@@ -36,8 +36,10 @@ public class Panopticon {
         CHANNEL.messageBuilder(BiomeTilePackets.Request.class, 11).encoder(BiomeTilePackets.Request::encode).decoder(BiomeTilePackets.Request::decode).consumerNetworkThread(BiomeTilePackets.Request::handle).add();
         CHANNEL.messageBuilder(BiomeTilePackets.Result.class, 12).encoder(BiomeTilePackets.Result::encode).decoder(BiomeTilePackets.Result::decode).consumerNetworkThread(BiomeTilePackets.Result::handle).add();
         CHANNEL.messageBuilder(TeleportSurfacePacket.class, 13).encoder(TeleportSurfacePacket::encode).decoder(TeleportSurfacePacket::decode).consumerNetworkThread(TeleportSurfacePacket::handle).add();
+        CHANNEL.messageBuilder(TradeBookPackets.Request.class, 14).encoder(TradeBookPackets.Request::encode).decoder(TradeBookPackets.Request::decode).consumerNetworkThread(TradeBookPackets.Request::handle).add();
+        CHANNEL.messageBuilder(TradeBookPackets.Result.class, 15).encoder(TradeBookPackets.Result::encode).decoder(TradeBookPackets.Result::decode).consumerNetworkThread(TradeBookPackets.Result::handle).add();
         CHANNEL.build();
-        MAIN_CHANNEL = ChannelBuilder.named(ResourceLocation.fromNamespaceAndPath("panoptic", "main"))
+        MAIN_CHANNEL = ChannelBuilder.named(Identifier.fromNamespaceAndPath("panoptic", "main"))
                 .networkProtocolVersion(1).optional().simpleChannel();
         MAIN_CHANNEL.messageBuilder(OraclePackets.Check.class, 0).encoder(OraclePackets.Check::encode).decoder(OraclePackets.Check::decode).consumerNetworkThread(OraclePackets.Check::handle).add();
         MAIN_CHANNEL.messageBuilder(OraclePackets.CheckResult.class, 1).encoder(OraclePackets.CheckResult::encode).decoder(OraclePackets.CheckResult::decode).consumerNetworkThread(OraclePackets.CheckResult::handle).add();
