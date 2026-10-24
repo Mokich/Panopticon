@@ -16,10 +16,12 @@ Panopticon runs on the server only. It:
 |:---:|:---:|:---:|:---:|
 | 1.20.1 | ✅ | - | ✅ |
 | 1.21.1 | ✅ | ✅ | ✅ |
+| 26.1.2 | ✅ | ✅ | - |
+| 26.3 | - | - | ✅ |
 
 ## Repository layout 
 
-Five self-contained Gradle projects, one per loader target, plus a composite root:
+Eight self-contained Gradle projects, one per loader target, plus a composite root:
 
 ```
 Panopticon/
@@ -28,22 +30,25 @@ Panopticon/
 ├── 1.21.1-neoforge/   ModDevGradle, Java 21
 ├── 1.21.1-fabric/     Fabric Loom, Java 21
 ├── 1.20.1-fabric/     Fabric Loom, Java 17 target
+├── 26.1.2-forge/      ForgeGradle 7, Java 25
+├── 26.1.2-neoforge/   ModDevGradle, Java 25
+├── 26.3-fabric/       Fabric Loom, Java 25
 ├── settings.gradle    composite build (forge/neoforge projects)
 ├── build.gradle       buildAll / cleanAll / collectJars
 └── stampDates.gradle  reproducible jar timestamps
 ```
 
-Each target is a full copy of the (small) server codebase adapted to that loader's APIs. The Forge/NeoForge projects build through a Gradle composite; the two Fabric projects run on their own newer Gradle via wrapper calls from the root.
+Each target is a full copy of the (small) server codebase adapted to that loader's APIs. The Forge/NeoForge projects build through a Gradle composite; the Fabric projects run on their own newer Gradle via wrapper calls from the root.
 
 ## Building
 
-Requires JDK 17 and JDK 21 installed (Gradle toolchains pick them up automatically). From the repository root:
+Requires JDK 17, 21 and 25 installed (Gradle toolchains pick them up automatically). From the repository root:
 
 ```
 ./gradlew buildAll
 ```
 
-Final jars for all five targets are collected in `build/libs/`. Builds are reproducible (fixed file order, constant entry timestamps).
+Final jars for all eight targets are collected in `build/libs/`. Builds are reproducible (fixed file order, constant entry timestamps).
 
 ## How it works
 
@@ -80,7 +85,7 @@ All subcommands require admin access. The same operations are available through 
 
 ## Network protocol
 
-All channels live in the `panoptic:` namespace - this is the wire contract with the Panoptic client, shared by integrated servers and Panopticon. Message names and payload layout are identical across all five targets.
+All channels live in the `panoptic:` namespace - this is the wire contract with the Panoptic client, shared by integrated servers and Panopticon. Message names and payload layout are identical across all targets.
 
 | Channel | Direction | Purpose |
 |---|:---:|---|
